@@ -31,12 +31,13 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
-        print("Value changed: \(sender.value)")
+        splitNumberLabel.text = "\(Int(sender.value))"
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
         var tip = getTip()
-        print("Tip: \(tip)%")
+        print("Tip: \(tip)")
+        print("Split: \(splitNumberLabel.text)")
     }
     
     func getTip() -> Float {
