@@ -28,16 +28,19 @@ class CalculatorViewController: UIViewController {
         if (!sender.isSelected) {
             sender.isSelected = true
         }
+        billTextField.endEditing(true)
     }
     
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         splitNumberLabel.text = "\(Int(sender.value))"
+        billTextField.endEditing(true)
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        var tip = getTip()
-        print("Tip: \(tip)")
-        print("Split: \(splitNumberLabel.text)")
+        let tip = getTip()
+        let bill = Float(billTextField.text!) ?? 0
+        let splitBill = bill * (1 + tip)
+        print(String(format: "Bill total: %.2f", splitBill / Float(splitNumberLabel.text!)!))
     }
     
     func getTip() -> Float {
